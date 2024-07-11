@@ -2,7 +2,6 @@
 require 'fileutils'
 Dir.chdir(File.dirname(__FILE__))
 goblint = File.expand_path("../analyzer/goblint")
-goblint_conf = File.expand_path("../analyzer/conf/traces-rel.json")
 compare = File.expand_path("../analyzer/apronPrecCompare")
 fail "Please run script from goblint dir!" unless File.exist?(goblint)
 $vrsn = `#{goblint} --version`
