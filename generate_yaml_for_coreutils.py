@@ -15,13 +15,14 @@ def run_configuration(cwd,infile,outfile,uplevel,extraconf=""):
         else:
             raise ValueError("outfile must be specified for non-c files")
 
-    enable_c2po="--set ana.activated[+] c2po --set ana.activated[+] startState --set ana.activated[+] taintPartialContexts"
-    cmd = goblint + " --enable pre.keep " + extraconf +  " --set dbg.timeout 3600 " + enable_c2po + " -v  --enable witness.yaml.enabled "+ "--disable sem.unknown_function.spawn --disable sem.unknown_function.call --enable allglobs --enable dbg.timing.enabled "
+    if(not os.path.isfile(outfile)):
+        enable_c2po="--set ana.activated[+] c2po --set ana.activated[+] startState --set ana.activated[+] taintPartialContexts"
+        cmd = goblint + " --enable pre.keep " + extraconf +  " --set dbg.timeout 3600 " + enable_c2po + " -v  --enable witness.yaml.enabled "+ "--disable sem.unknown_function.spawn --disable sem.unknown_function.call --enable allglobs --enable dbg.timing.enabled "
 
-    # --set witness.yaml.path ./aget_comb_traces_rel.yml
-    command = cmd + " " + infile + " --set witness.yaml.path  " + outfile
-    print("Executing command: " + command)
-    os.system(command)
+        # --set witness.yaml.path ./aget_comb_traces_rel.yml
+        command = cmd + " " + infile + " --set witness.yaml.path  " + outfile
+        print("Executing command: " + command)
+        os.system(command)
 
 bench_dir = "/home/ddm2/master/bench/"
 coreutils_dir = bench_dir + "coreutils_without_comments/"
