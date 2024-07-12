@@ -250,7 +250,7 @@ end
 
 #Command line parameters
 
-timeout = 4000
+timeout = 3600
 timeout = ARGV[0].to_i unless ARGV[0].nil?
 only = ARGV[1] unless ARGV[1].nil?
 if only == "group" then
@@ -363,7 +363,7 @@ $projects.each do |p|
     yamlfile = File.join(File.dirname(filename), File.basename(filename, File.extname(filename))) + "_traces_rel.yml"
     starttime = Time.now
     #Add --sets cilout /dev/null to ignore CIL output.
-    cmd = "#{goblint} --set dbg.timeout #{timeout} #{aparam} #{filename} #{p.params} --enable allglobs --enable dbg.timing.enabled -v --set witness.yaml.validate #{yamlfile} 1>#{outfile} 2>&1"
+    cmd = "#{goblint} --set dbg.timeout #{timeout} #{aparam} #{filename} #{p.params} --enable allglobs --enable dbg.timing.enabled -v --disable sem.unknown_function.spawn --disable sem.unknown_function.call --set witness.yaml.validate #{yamlfile} 1>#{outfile} 2>&1"
     print "Command: #{cmd}"
     STDOUT.flush
     system(cmd)
