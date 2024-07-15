@@ -5,9 +5,9 @@ goblint = File.expand_path("../analyzer/goblint")
 compare = File.expand_path("../analyzer/apronPrecCompare")
 fail "Please run script from goblint dir!" unless File.exist?(goblint)
 $vrsn = `#{goblint} --version`
-results = "esop23_table2_set_goblint"
+results = "witness_results_c2po"
 Dir.mkdir(results) unless Dir.exist?(results)
-$testresults = File.expand_path("esop23_table2_set_goblint") + "/"
+$testresults = File.expand_path("witness_results_c2po") + "/"
 bench = "./"
 linux = bench + "linux/"
 
